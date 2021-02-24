@@ -22,14 +22,16 @@ jobs:
       - name: Login to DockerHub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         
-      - name: Publish docker web server image
-        run: docker tag devops-test_web1:latest devops-test_web:latest
+      - name: Rename docker web server image 
+        run: docker tag devops-test_web1:latest gfengster/devops-test_web:latest
         
       - name: Publish docker web server image
-        run: docker push devops-test_web:latest
+        run: docker push gfengster/devops-test_web:latest
      
+      - name: Rename docker load balancer image 
+        run: docker tag devops-test_gateway:latest gfengster/devops-test_gateway:latest
         
       - name: Publish docker load balancer image
-        run: docker push devops-test_gateway:latest
+        run: docker push gfengster/devops-test_gateway:latest
         
 
