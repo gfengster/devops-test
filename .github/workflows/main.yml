@@ -22,9 +22,15 @@ jobs:
       - name: Start up cluster
         run: sleep 20
         
-      - name: First time curl the cluster 
-        run: curl -s http://localhost && echo "" && curl -s http://localhost 
-        
+      - name: curl the cluster 
+        run: first=$(curl -s http://localhost) && sencond=$(curl -s http://localhost)
+      
+      - name: Outout
+        run: echo $first && echo "" && echo $sencond
+      
+      - name: Compare output
+        run:  if [ $first = $sencond ]; then echo Load Balancer is not round robin.; exit 1; fi
+      
       - name: Second time curl the cluster
         run: curl -s http://localhost && echo "" && curl -s http://localhost
 
