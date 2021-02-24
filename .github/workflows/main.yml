@@ -18,6 +18,12 @@ jobs:
 
       - name: Start cluster
         run: docker-compose up --build -d
+        
+      - name: First time curl the cluster 
+        run: curl http://172.20.0.118
+        
+      - name: Second time curl the cluster
+        run: curl http://172.20.0.118  
 
       - name: Login to DockerHub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
