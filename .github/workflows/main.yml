@@ -1,0 +1,24 @@
+name: GFeng CI/CD
+
+on:
+  push:
+    branches: [ master ] 
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  Build_main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source code 
+        uses: actions/checkout@v2
+
+      - name: Install npm
+        run: apt install -y npm
+
+      - name: Run test
+        run: cd src && npm test
+        
