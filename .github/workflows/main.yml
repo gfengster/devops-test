@@ -18,6 +18,9 @@ jobs:
 
       - name: Start cluster
         run: docker-compose up --build -d
+      
+      - name: Start up cluster
+        run: sleep 20
         
       - name: First time curl the cluster 
         run: curl http://localhost
