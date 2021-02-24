@@ -19,5 +19,13 @@ jobs:
       - name: Start cluster
         run: docker-compose up --build -d
 
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        
+      - name: Publish docker web server image
+        run: docker push devops-test_web:latest
+        
+      - name: Publish docker load balancer image
+        run: docker push devops-test_gateway:latest
         
 
