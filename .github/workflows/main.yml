@@ -17,8 +17,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install npm
-        run: apt install -y npm
+        run: apt update && apt install -y npm
 
       - name: Run test
         run: cd src && npm test
-        
+
