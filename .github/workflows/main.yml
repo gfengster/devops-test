@@ -22,10 +22,10 @@ jobs:
       - name: Start up cluster
         run: sleep 20
         
-      - name: curl the cluster 
+      - name: curl url twice and compare the results
         run: first=$(curl -s http://localhost) && sencond=$(curl -s http://localhost) &&  echo $first && echo $sencond &&  if [ "$first" = "$sencond" ]; then echo Load Balancer is not round robin.; exit 1; fi 
 
-      - name: Second time curl the cluster
+      - name: curl url twice again
         run: curl -s http://localhost && echo "" && curl -s http://localhost
 
       - name: Login to DockerHub
