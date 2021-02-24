@@ -16,7 +16,9 @@ jobs:
       - name: Check out source code 
         uses: actions/checkout@v2
 
-      - name: NPM Tests
-        uses: anna-money/github-actions-npm@v1
+      - name: Install NPM
+        uses: c-hive/gha-npm-cache@v1
 
+      - name: Run test
+        run: npm test
 
