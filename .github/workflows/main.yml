@@ -19,6 +19,4 @@ jobs:
       - name: NPM Tests
         uses: anna-money/github-actions-npm@v1
 
-      - name: Run test
-        run: cd src && npm test
 
