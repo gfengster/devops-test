@@ -7,7 +7,7 @@ if [ "$#" -ne 1 ]; then
     echo "Illegal number of parameters"
 fi
 
-echo $num
+echo set number of webserver to $num
 
 docker-compose scale web=$1
 
