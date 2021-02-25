@@ -5,6 +5,12 @@ tmpconfig="nginx.tmp"
 
 if [ "$#" -ne 1 ]; then
     echo "Illegal number of parameters"
+    exit 1
+fi
+
+if [ "$((num))" -lt 1 ]; then
+    echo "The number of web server must be more than 1"
+    exit 2
 fi
 
 echo set number of webserver to $num
