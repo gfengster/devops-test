@@ -15,24 +15,14 @@ services:
         backend_net:
 
 
-  web1:
-    container_name: node_1
+  web:
+    #container_name: node
     build: 
       context: .
       dockerfile: Dockerfile
-      
+         
     networks:
-        backend_net:
-      
-  web2:
-    container_name: node_2
-    build: 
-      context: .
-      dockerfile: Dockerfile
-     
-    networks:
-        backend_net:
-            
+        backend_net:          
        
 networks:
     backend_net:
