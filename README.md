@@ -1,12 +1,13 @@
-I run following commands on Ubuntu 20.04.2. docker and docker-compose
+I run following commands on Ubuntu 20.04.2. docker and docker-compose are installed.
+
+In the cluster, nginx is a gateway with load balance. The method is  Round Robin. The backend is two web servers. Http URL to access the service is **http://172.20.0.118**.
 
 **Run CI/CD pipeline**
 
 1.  Submit code change
     The repository is github (https://github.com/gfengster/devops-test). The main branch is default. After submited change to gihub. Auto-build will be triggered.
 2.  Auto CI. 
-    Check the CI in<br>
-    https://github.com/gfengster/devops-test/actions.
+    Check the CI in https://github.com/gfengster/devops-test/actions.
 3.  Auto CD.
     If the build and test successfully, webserver and gateway images will be deployed to docker hub.
     Web server: https://hub.docker.com/repository/docker/gfengster/devops-test_web<br>
@@ -16,7 +17,7 @@ I run following commands on Ubuntu 20.04.2. docker and docker-compose
 
 1. Build and start cluster
 
-   `docker-compose up --build`
+   `$  docker-compose up --build`
 
 2. Test web server
 
@@ -34,13 +35,9 @@ I run following commands on Ubuntu 20.04.2. docker and docker-compose
    `curl 172.20.0.118`<br>
    `Hi there! I'm being served from a39662dd7f59`
 
-**Run Test Code**
-1. Build a image for testing<br>
-   `docker build -t test-devops -f TestDockerfile .`
-2. Run test in a docker container<br>
-   `docker run test-devops`<br>
-   `Fake test` would show up in the terminal.
+   If run again, the return should be the same as the first run.
 
+   
 
 
 
