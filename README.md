@@ -1,28 +1,45 @@
-# DevOps Engineer - Technical Test	
-We think infrastructure is best represented as code, and provisioning of resources should be automated as much as possible.	
+I run following commands on Ubuntu 20.04.2. docker and docker-compose are installed.
 
- Your task is to create a CI build pipeline that deploys this web application to a load-balanced	
-environment. You are free to complete the test in a local environment (using tools like Vagrant and	
-Docker) or use any CI service, provisioning tool and cloud environment you feel comfortable with (we	
-recommend creating a free tier account so you don't incur any costs).	
+In the cluster, nginx is a gateway with load balance. The method is  Round Robin. The backend is two web servers. Http URL to access the service is **http://172.20.0.118**.
 
- * Your CI job should:	
-  * Run when a feature branch is pushed to Github (you should fork this repository to your Github account). If you are working locally feel free to use some other method for triggering your build.	
-  * Deploy to a target environment when the job is successful.	
-* The target environment should consist of:	
-  * A load-balancer accessible via HTTP on port 80.	
-  * Two application servers (this repository) accessible via HTTP on port 3000.	
-* The load-balancer should use a round-robin strategy.	
-* The application server should return the response "Hi there! I'm being served from {hostname}!".	
+**Run CI/CD pipeline**
 
- ## Context	
-We are testing your ability to implement modern automated infrastructure, as well as general knowledge of system administration. In your solution you should emphasize readability, maintainability and DevOps methodologies.	
+1.  Submit code change
+    The repository is github (https://github.com/gfengster/devops-test). The main branch is default. After submited change to gihub. Auto-build will be triggered.
+2.  Auto CI. 
+    Check the CI in https://github.com/gfengster/devops-test/actions.
+3.  Auto CD.
+    If the build and test successfully, webserver and gateway images will be deployed to docker hub.
+    Web server: https://hub.docker.com/repository/docker/gfengster/devops-test_web<br>
+    Gateway: https://hub.docker.com/repository/docker/gfengster/devops-test_gateway
 
- ## Submit your solution	
-Create a public Github repository and push your solution in it. Commit often - we would rather see a history of trial and error than a single monolithic push. When you're finished, send us the URL to the repository.	
+**Run cluster in local machine**
 
- ## Running this web application	
- This is a NodeJS application:	This is a NodeJS application:
+1. Build and start cluster
 
-- `npm test` runs the application tests	- `npm test` runs the application tests
-- `npm start` starts the http server
+   `$  docker-compose up --build`
+
+2. Scaling number of web servers.
+   `./scale.sh {number}`<br>
+   For example, set 2 instances of web servers.
+   `./scale.sh 2`
+
+3. Test web server
+
+   Run `curl 172.20.0.118` twice in a terminal. The results should come back difference.
+
+   For example:
+
+   First run:
+
+   `curl 172.20.0.118`<br>
+   `Hi there! I'm being served from e5376038dcc1` 
+
+   Second run:
+
+   `curl 172.20.0.118`<br>
+   `Hi there! I'm being served from a39662dd7f59`
+
+   If run again, the return should be the same as the first run.
+
+   
