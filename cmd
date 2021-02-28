@@ -16,7 +16,7 @@ kubectl create deployment web-server --image=gfengster/devopstestweb:latest
 
 kubectl create deployment web-server --image=docker.io/gfengster/devopstestweb:latest
 
-kubectl expose deployment web-server --type=LoadBalancer --port=3000 --target-port=30300
+kubectl expose deployment web-server --type=LoadBalancer --port=80 --target-port=3000
 
 
 kubectl scale -n default deployment web-server --replicas=2
