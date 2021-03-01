@@ -3,16 +3,13 @@ apiVersion: v1
 metadata:
   name: web-server
   namespace: default
-  uid: 3a5cabe8-66f8-42dc-9227-c197a6f91b8a
   resourceVersion: '996'
-  creationTimestamp: '2021-02-25T21:23:24Z'
   labels:
     app: web-server
   managedFields:
     - manager: kubectl
       operation: Update
       apiVersion: v1
-      time: '2021-02-25T21:23:24Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
@@ -38,7 +35,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 3000
-      nodePort: 30806
+      nodePort: 80
   selector:
     app: web-server
   clusterIP: 10.96.61.11

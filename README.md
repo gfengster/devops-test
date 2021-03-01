@@ -4,21 +4,20 @@ Install kvm, minikube and kubectl.
    `docker build -t gfengster/devopstestweb:latest .`
 
 2. Set up a minikube<br>
-   `minikube start --driver=kvm`
+   `minikube start --driver=kvm --extra-config=apiserver.service-node-port-range=80-30000`
 
 3. Create a deployment<br>
-   `kubectl apply -f deployment.yml`<br>
-   or<br>
-   `kubectl create deployment web-server --image=gfengster/devopstestweb:latest`<br>
-   Set number of instances to 2.<br>
-   `kubectl scale -n default deployment web-server --replicas=2`
+   `kubectl apply -f deployment.yml`
 
 4. Build load balancer and expose service<br>
-   `kubectl apply -f service.yml`<br>
-   or<br>
-   `kubectl expose deployment web-server --type=LoadBalancer --port=80 --target-port=3000`
+   `kubectl apply -f service.yml`
 
-5. Find out the url<br>
-   `minikube service web-server`<br>
-   will show the http url for the service.
+5. Find out load balancer ip<br>
+   `minikube ip`<br>
+  
+6. Access http url<br>
+    Get ip from step5<br>
+   `curl {ip}`<br>
+   For example<br>
+   `curl 192.168.39.4`
    

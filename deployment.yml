@@ -3,10 +3,8 @@ apiVersion: apps/v1
 metadata:
   name: web-server
   namespace: default
-  uid: 6f771ef7-b649-47e2-9811-94ca715766ba
   resourceVersion: '1814'
   generation: 2
-  creationTimestamp: '2021-02-25T21:15:11Z'
   labels:
     app: web-server
   annotations:
@@ -15,7 +13,6 @@ metadata:
     - manager: kubectl
       operation: Update
       apiVersion: apps/v1
-      time: '2021-02-25T21:15:11Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
@@ -56,7 +53,6 @@ metadata:
     - manager: kube-controller-manager
       operation: Update
       apiVersion: apps/v1
-      time: '2021-02-28T17:25:34Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
@@ -126,13 +122,8 @@ status:
   conditions:
     - type: Progressing
       status: 'True'
-      lastUpdateTime: '2021-02-25T21:15:36Z'
-      lastTransitionTime: '2021-02-25T21:15:11Z'
       reason: NewReplicaSetAvailable
-      message: ReplicaSet "web-server-76478c5ff7" has successfully progressed.
     - type: Available
       status: 'True'
-      lastUpdateTime: '2021-02-28T17:25:34Z'
-      lastTransitionTime: '2021-02-28T17:25:34Z'
       reason: MinimumReplicasAvailable
       message: Deployment has minimum availability.
